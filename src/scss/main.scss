@@ -1,107 +1,94 @@
 @use "sass:color";
 
-// 1. Хувьсагчид болон Өнгө тодорхойлох
+// variables
 $primaryColor: #2bac73;
 $primaryColorDark: color.scale($primaryColor, $lightness: -15%);
 
 $secondaryColor: #ff914d;
 $secondaryColorDark: color.scale($secondaryColor, $lightness: -15%);
 
-// Bulma-ийн үндсэн өнгийг өөрийн өнгөөр солих (Import-ын өмнө зарлана)
-$primary: $primaryColor;
-$link: $secondaryColor; 
-
-// 2. Фреймворк импортлох
 @import "../../node_modules/bulma/bulma";
 
-// 3. Bulma-аас гадуурх нэмэлт өөрчлөлтүүд (Overrides)
+// override bulma button
 :root {
   --bulma-primary-h: 151deg;
   --bulma-primary-s: 65%;
   --bulma-primary-l: 42%;
 }
 
-// Bulma-д байхгүй шинэ "is-secondary" товчлуурын класс үүсгэх
-.button {
-  &.is-primary, &.is-secondary {
-    color: #fff;
-    transition: all 0.2s ease;
-  }
-
-  &.is-secondary {
-    background-color: $secondaryColor;
-    border-color: $secondaryColor;
-
-    &:hover {
-      background-color: $secondaryColorDark;
-      border-color: $secondaryColorDark;
-      color: #fff;
-    }
-  }
+.button.is-primary {
+  background-color: $primaryColor;
+  border-color: $primaryColor;
+  color: white;
+  transition: all 0.2s ease;
 }
 
-// 4. Навигацийн цэс (Navbar) стилиуд
-.navbar {
-  // Дээд цэсийг бэхлэх болон сүүдэр ажиллагаа
-  &.app-sticky {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: #f5f5f5;
-  }
-
-  &.app-shadow {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  }
+.button.is-primary:hover {
+  background-color: $primaryColorDark;
+  border-color: $primaryColorDark;
+  color: white;
 }
 
-.navbar-brand {
-  display: flex;
-  align-items: center; // Бүх элементийг босоо тэнхлэгт голлуулна
+.button.is-secondary {
+  background-color: $secondaryColor;
+  border-color: $secondaryColor;
+  color: white;
+  transition: all 0.2s ease;
+}
 
-  a {
-    display: flex;       // Текст болон логог нэг шугаманд оруулах
-    align-items: center;
-    gap: 8px;
+.button.is-secondary:hover {
+  background-color: $secondaryColorDark;
+  border-color: $secondaryColorDark;
+  color: white;
+}
 
-    p {
-      color: $primaryColor;
-      font-size: 1rem;
-      margin: 0;         // Bulma-ийн p тагийн default margin-ыг устгах
-    }
-    span {
-      color: $secondaryColor;
-    }
+// top navbar
+.navbar-brand a {
+  p {
+    color: $primaryColor;
+    font-size: 1rem;
   }
-
-  // Зургийн хэмжээг зөв барих
-  .image {
-    display: flex;
-    align-items: center;
-    
-    img {
-      max-width: 64px;
-      height: auto;
-      display: block;      // baseline зөрүүг арилгах
-      object-fit: contain; // Зургийн харьцаа алдагдахаас сэргийлнэ
-    }
+  span {
+    color: $secondaryColor;
   }
+}
+.navbar-end a {
+  color: $secondaryColor;
+}
+
+.app-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* дээр харагдахаар */
+  background-color: #f5f5f5; /* эсвэл өөр өнгө */
+}
+
+.app-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand .image img {
+  max-width: 64px;
+  height: auto;
 }
 
 .navbar-item {
   display: flex;
   align-items: center;
-  gap: 8px; // Зураг, текстийн хоорондох зай
+  gap: 8px; /* зураг, текстийн хооронд зай */
 }
 
-.navbar-end {
-  a {
-    color: $secondaryColor;
-  }
-}
-
-// Цэсийг баруун тал руу зэрэгцүүлэх
+// Цэсийг баруун тал руу зэрэгцүүлэх. Navbar.js-д .app-top-navbar классыг ашигласан.
 .app-top-navbar-right {
   flex-grow: 1;
   justify-content: flex-end;
+}
+
+// лого арын өнгө цагаан тул hover хийх үед ялгарч харагдахгүй болгов.
+.navbar-brand .app-logo:hover,
+.navbar-brand .app-logo:focus,
+.navbar-brand .app-logo:active {
+  background-color: transparent;
+  color: inherit;
+  box-shadow: none;
 }
