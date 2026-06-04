@@ -28,6 +28,7 @@ $secondaryColorDark: color.scale($secondaryColor, $lightness: -15%);
 @import "./components/navbar";
 @import "./components/sidebarPageLayout";
 @import "./components/sidebarMenuList";
+@import "./components/_imageModal";
 @import "./layouts/pageTableContentsLayout";
 
 
