@@ -1,4 +1,4 @@
-import { DATA_MODE, LOCAL_NUTRITIONS_URL, API_NUTRITIONS_URL } from "../../config.js";
+import { DATA_MODE, LOCAL_NUTRITIONS_URL, API_NUTRITIONS_URL } from "../config.js";
 
 let nutritionCache = null;
 
